@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #494950;
+    text-align: center;
+}
+
+#container{
+    margin: 0 auto;
+    text-align: center;
+    width: 900px;
+    padding: 50px 0 0 0;
+}
+
+h1{
+    padding: 30px;
+    font-family: Verdana;
+    color: #0c0a0e;
+}
+p{
+    font: normal 10pt Verdana;
+    color: #0c0a0e;
+}
+
+#canvas{
+    margin: 50px;
+    border-radius: 20px;
+    background-color: #0c0a0e;
+}
