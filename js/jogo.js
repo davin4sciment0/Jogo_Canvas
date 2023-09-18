@@ -42,23 +42,22 @@ let gravidade = 4;
 let gameOver = false;
 let score = 0;
 
+// Identificação da tag Canvas
 window.onload = function() {
     canvas = document.getElementById("canvas");
     canvas.height = canvasHeight;
     canvas.width = canvasWidth;
 
-    context = canvas.getContext("2d"); //used for drawing on the board
+    context = canvas.getContext("2d"); 
 
-    //draw initial dinosaur
-    // context.fillStyle="green";
-    // context.fillRect(dino.x, dino.y, dino.width, dino.height);
-
+    // Adição do soldado a cena
     soldadoImg = new Image();
     soldadoImg.src = "./img/Soldado.png";
     soldadoImg.onload = function() {
         context.drawImage(soldadoImg, soldado.x, soldado.y, soldado.width, soldado.height);
     }
 
+    // Setando obstaculos
     obstaculo1Img = new Image();
     obstaculo1Img.src = "./img/ob1.png";
 
@@ -80,12 +79,12 @@ function update() {
     }
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Soldado
+    // Implementando gravidade ao soldado
     velocidadeY += gravidade;
-    soldado.y = Math.min(soldado.y + velocidadeY, soldadoY); //apply gravity to current dino.y, making sure it doesn't exceed the ground
+    soldado.y = Math.min(soldado.y + velocidadeY, soldadoY); 
     context.drawImage(soldadoImg, soldado.x, soldado.y, soldado.width, soldado.height);
 
-    // Obstaculos
+    // Movimentação obstaculos
     for (let i = 0; i < obstaculosArray.length; i++) {
         let obstaculos = obstaculosArray[i];
         obstaculos.x += velocidadeX;
@@ -96,19 +95,19 @@ function update() {
             soldadoImg.src = "./img/morte.png";
             soldadoImg.onload = function() {
                 context.drawImage(soldadoImg, soldado.x, soldado.y, soldado.width, soldado.height);
-        
+                canvas.fillStyle="red";
             }
         }
     }
 
-    //score
+    //Pontuação
     context.fillStyle = "black";
     context.font = "20px Verdana";
     score++;
     context.fillText(score, 5, 20);
 }
 
-
+//Movimentação do soldado
 function movSoldado(e) {
     if (gameOver) {
         return;
@@ -117,12 +116,6 @@ function movSoldado(e) {
         soldadoY -= 100;
     }
 }
-
-
-document.addEventListener("keydown", movSoldado);
-gameLoop();
-
-
 
 function lugarObs() {
     if (gameOver) {
@@ -138,32 +131,32 @@ function lugarObs() {
         height: obstaculoHeight
     }
 
-    let PosicaoOBJ = Math.random(); //0 - 0.9999...
+    let PosicaoOBJ = Math.random(); 
 
-    if (PosicaoOBJ > .90) { //10% you get cactus3
+    if (PosicaoOBJ > .90) { 
         obstaculos.img = obstaculo3Img;
         obstaculos.width = obstaculo3Width;
         obstaculosArray.push(obstaculos);
     }
-    else if (PosicaoOBJ > .70) { //30% you get cactus2
+    else if (PosicaoOBJ > .70) { 
         obstaculos.img = obstaculo2Img;
         obstaculos.width = obstaculo2Width;
         obstaculosArray.push(obstaculos);
     }
-    else if (PosicaoOBJ > .50) { //50% you get cactus1
+    else if (PosicaoOBJ > .50) { 
         obstaculos.img = obstaculo1Img;
         obstaculos.width =obstaculo1Width;
         obstaculosArray.push(obstaculos);
     }
 
     if (obstaculosArray.length > 5) {
-        obstaculosArray.shift(); //remove the first element from the array so that the array doesn't constantly grow
+        obstaculosArray.shift();
     }
 }
 
 function detectCollision(a, b) {
-    return a.x < b.x + b.width &&   //a's top left corner doesn't reach b's top right corner
-           a.x + a.width > b.x &&   //a's top right corner passes b's top left corner
-           a.y < b.y + b.height &&  //a's top left corner doesn't reach b's bottom left corner
-           a.y + a.height > b.y;    //a's bottom left corner passes b's top left corner
+    return a.x < b.x + b.width &&   
+           a.x + a.width > b.x &&   
+           a.y < b.y + b.height &&  
+           a.y + a.height > b.y;    
 }
