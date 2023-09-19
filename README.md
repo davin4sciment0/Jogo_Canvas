@@ -1,7 +1,15 @@
-<<h1 align="center">JOGO CANVAS </h1>
+<h1 align="center">JOGO CANVAS </h1>
+
+<img src="Imagens_readme/apresentacao.jpg">
 
 ## Objetos da cena:
-<p></p>
+<div>
+    <img src="img/Soldado.png" width="120px">
+    <img src="img/morte.png" width="120px">
+    <img src="img/Ob1.png" width="65px">
+    <img src="img/Ob2.png" width="115px">
+    <img src="img/Ob3.png" width="190px"
+</div>
 
 ## Código HTML
 <p>Neste código, após colocarmos o titulo da página e o nome da dupla com as tags padrões de texto, colocamos a tag "canvas" onde será a tela para o nosso jogo, já especificando seu tamanho e a largura de tela</p>
