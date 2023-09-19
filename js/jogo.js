@@ -37,7 +37,7 @@ let obstaculo3Img;
 // Fisicas do jogo
 let velocidadeX = -8; 
 let velocidadeY = 0;
-let gravidade = 4;
+let gravidade = .4;
 
 let gameOver = false;
 let score = 0;
@@ -112,8 +112,13 @@ function movSoldado(e) {
     if (gameOver) {
         return;
     }
-    if ((e.key === "W" || e.key === "w") && soldado.y == soldadoY) {
+    if ((e.key === "W"  || e.key === "w"|| e.key === "Space") && soldado.y == soldadoY) {
         soldadoY -= 100;
+
+        setTimeout(function(){ 
+            soldadoY = canvasHeight -soldadoHeight
+            console.log("teste")
+        }, 480) 
     }
 }
 
